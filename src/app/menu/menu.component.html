@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-target">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/home">Accueil</a></li>
+                <li class="active"><a routerLink="/home">Accueil</a></li>
                 <li *ngIf="sharedService.isConnected" class="dropdown">
                     <a class="dropdown-toggle" href="" data-toggle="dropdown">Listes<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -24,7 +24,7 @@
                 <li *ngIf="sharedService.isConnected" ><a href="">Ajouter</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!sharedService.isConnected"><a href="" class="btn btn-link">Login</a></li>
+                <li *ngIf="!sharedService.isConnected"><a [routerLink]="['/login']" class="btn btn-link">Login</a></li>
                 <li *ngIf="sharedService.isConnected"><a href="" (click)="logout()">Logout</a></li>
             </ul>
         </div>
