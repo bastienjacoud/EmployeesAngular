@@ -16,12 +16,12 @@
                 <li *ngIf="sharedService.isConnected" class="dropdown">
                     <a class="dropdown-toggle" href="" data-toggle="dropdown">Listes<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Tous les employés</a></li>
+                        <li><a [routerLink]="['/getEmployees']">Tous les employés</a></li>
                         <li><a href="">Liste par Job</a></li>
                         <li><a href="">Liste par Département</a></li>
                     </ul>
                 </li>
-                <li *ngIf="sharedService.isConnected" ><a href="">Ajouter</a></li>
+                <li *ngIf="sharedService.isConnected" ><a routerLink="/addEmployee">Ajouter</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!sharedService.isConnected"><a [routerLink]="['/login']" class="btn btn-link">Login</a></li>
@@ -31,4 +31,3 @@
     </div>
     <!--/.container-fluid -->
   </nav>
-  

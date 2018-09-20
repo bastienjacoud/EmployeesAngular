@@ -8,7 +8,7 @@ import { SharedService } from '../services/shared.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private sharedService: SharedService) { }
+  constructor(public sharedService: SharedService) { }
 
   ngOnInit() {
     console.log('on init menu');

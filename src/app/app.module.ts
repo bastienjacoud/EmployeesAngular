@@ -8,20 +8,28 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule} from '@angular/forms';
 import { SharedService } from './services/shared.service';
 import { HomeComponent } from './home/home.component';
+import {LoginService} from './services/login.service';
+import {HttpClientModule} from '@angular/common/http';
+import {EmployeeService} from './services/employee.service';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeesComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [SharedService],
+  providers: [SharedService, LoginService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

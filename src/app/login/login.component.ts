@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
+import {LoginService} from '../services/login.service';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private userLogin: string;
-  private userPwd: string;
-  private error: string;
-  private title: string = "Connexion";
+  public userLogin: string;
+  public userPwd: string;
+  public error: string;
+  public title = 'Connexion';
+  private user: User;
 
   constructor(private sharedService: SharedService,
-              private router: Router) { }
+              private router: Router,
+              private loginService: LoginService) { }
 
   ngOnInit() {
+    this.user = new User();
   }
 
   public login (): void {
-    if(this.userLogin == "admin" && this.userPwd == "secret"){
-      this.sharedService.isConnected = true;
-      this.router.navigate(['/home']);
-    }
-    else
-      this.error = "Login ou mot de passe incorrect.";
+    this.loginService.getUser(this.userLogin).subscribe(
+      (user) => {
+        this.user = user;
+        if (this.userPwd === this.user.userpwd ) {
+          this.sharedService.isConnected = true;
+          this.router.navigate(['/home']);
+        } else {
+          this.error = 'Login ou mot de passe incorrect.';
+        }
+      },
+      (error) => {
+        this.error = error.message;
+      });
   }
 }
