@@ -27,6 +27,14 @@ export class EmployeeService {
     return this.httpClient.post(this.employeeSrvUrl + 'addEmployee', JSON.stringify(employee));
   }
 
+  getEmployeesByJob(job_id: number): Observable<any> {
+    return this.httpClient.get(this.employeeSrvUrl + 'getEmployeesByJob/' + job_id);
+  }
+
+  getEmployeesByDep(dep_id: number): Observable<any> {
+    return this.httpClient.get(this.employeeSrvUrl + 'getEmployeesByDep/' + dep_id);
+  }
+
   updateEmployee(employee: Employee): Observable<any> {
     return this.httpClient.put(this.employeeSrvUrl + 'updateEmployee', JSON.stringify(employee));
   }

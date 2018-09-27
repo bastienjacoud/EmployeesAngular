@@ -1,0 +1,15 @@
+<div class="container">
+  <h3 class="col-md-offset-2">{{title}}</h3>
+
+  <form class="form-horizontal" role="form" name="empByDepForm">
+    <div class="form-group">
+      <app-department [department_id]="department_id" (choose)='depSelected($event)' (errorEmit)="gestionErreur($event)"></app-department>
+    </div>
+  </form>
+
+  <div *ngIf="department_id > 0">
+    <app-emp-list [employees]="employees" (reload)="reload()"></app-emp-list>
+  </div>
+
+  <app-error [error]="error"></app-error>
+</div>

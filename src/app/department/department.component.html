@@ -1,0 +1,7 @@
+<label class="col-sm-3  col-md-2 control-label">Département : </label>
+<div class="col-sm-6 col-md-3">
+  <select class='form-control' name='departs' required [(ngModel)]="department_id" (change)="onChange($event.target.value)">
+    <option value='undefined'>Sélectionner un département</option>
+    <option *ngFor="let dep of departments" [value]="dep.department_id">{{dep.dname}}</option>
+  </select>
+</div>

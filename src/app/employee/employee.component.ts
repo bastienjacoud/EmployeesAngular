@@ -5,6 +5,8 @@ import {EmployeeService} from '../services/employee.service';
 import {CommonService} from '../services/common.service';
 import {Job} from '../models/job';
 import {Department} from '../models/department';
+import { Location} from '@angular/common';
+import {SharedService} from '../services/shared.service';
 
 @Component({
   selector: 'app-employee',
@@ -16,13 +18,13 @@ export class EmployeeComponent implements OnInit {
   private employee_id: number;
   public title: string;
   public error: string;
-  public jobs: Array<Job>;
-  public departments: Array<Department>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private employeService: EmployeeService,
               private commonService: CommonService,
-              private router: Router) { }
+              private router: Router,
+              private location: Location,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
     this.employee = new Employee();
@@ -33,27 +35,11 @@ export class EmployeeComponent implements OnInit {
     } else {
       this.title = 'Ajouter un employé.';
     }
-    this.getJobs();
-    this.getDepartments();
   }
 
   getEmploye(id: number): void {
     this.employeService.getEmployee(id).subscribe(
       (employee) => {this.employee = employee; },
-      (error) => {this.error = error.message; }
-    );
-  }
-
-  getJobs(): void {
-    this.commonService.getJobs().subscribe(
-      (jobs) => {this.jobs = jobs; },
-      (error) => {this.error = error.message; }
-    );
-  }
-
-  getDepartments(): void {
-    this.commonService.getDepartments().subscribe(
-      (departments) => {this.departments = departments; },
       (error) => {this.error = error.message; }
     );
   }
@@ -67,7 +53,10 @@ export class EmployeeComponent implements OnInit {
           this.error = 'Vous devez sélectionner un département.';
         } else {
           this.employeService.updateEmployee(this.employee).subscribe(
-            () => {this.router.navigate(['/getEmployees']); },
+            () => {
+              const originalURL: string = this.sharedService.getOriginalURL();
+              this.router.navigate([originalURL]);
+            },
             (error) => {this.error = error.message; }
           );
         }
@@ -79,5 +68,25 @@ export class EmployeeComponent implements OnInit {
         () => { this.router.navigate(['/getEmployees']); }
       );
     }
+  }
+
+  cancel(id: number): void {
+    if (id > 0) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+
+  jobSelected(job_id: number): void {
+    this.employee.job_id = job_id;
+  }
+
+  departmentSelected(department_id: number): void {
+    this.employee.department_id = department_id;
+  }
+
+  gestionError(error: string): void {
+    this.error = error;
   }
 }

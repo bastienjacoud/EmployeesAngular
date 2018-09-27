@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Département</th>
+    <th>Date embauche</th>
+    <th>Job</th>
+    <th>Salaire</th>
+    <th>Modifier</th>
+    <th>Supprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let emp of employees">
+    <td>{{emp.employee_id}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.department.dname}}</td>
+    <td>{{emp.hiredate | date:'shortDate'}}</td>
+    <td>{{emp.job.jobname}}</td>
+    <td>{{emp.salary}}</td>
+    <td><button class="btn btn-primary"(click)="detail(emp.employee_id)">Modifier</button></td>
+    <td><button class="btn btn-primary" (click)="delete(emp.employee_id)">Supprimer</button></td>
+  </tr>
+  </tbody>
+</table>

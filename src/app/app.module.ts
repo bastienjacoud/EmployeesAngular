@@ -13,6 +13,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {EmployeeService} from './services/employee.service';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { ErrorComponent } from './error/error.component';
+import { JobComponent } from './job/job.component';
+import { DepartmentComponent } from './department/department.component';
+import { EmpByJobComponent } from './emp-by-job/emp-by-job.component';
+import { EmpListComponent } from './emp-list/emp-list.component';
+import { EmpByDepComponent } from './emp-by-dep/emp-by-dep.component';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,13 @@ import { EmployeeComponent } from './employee/employee.component';
     LoginComponent,
     HomeComponent,
     EmployeesComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    ErrorComponent,
+    JobComponent,
+    DepartmentComponent,
+    EmpByJobComponent,
+    EmpListComponent,
+    EmpByDepComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +42,7 @@ import { EmployeeComponent } from './employee/employee.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [SharedService, LoginService, EmployeeService],
+  providers: [SharedService, LoginService, EmployeeService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

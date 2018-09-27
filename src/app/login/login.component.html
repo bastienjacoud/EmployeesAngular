@@ -19,13 +19,6 @@
               <button type="reset" class="btn btn-default">Reset</button>
           </div>
       </div>
-      <div *ngIf="error" class="form-group" >
-          <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-              <div class="alert-danger" role="alert">
-                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                  {{error}}
-              </div>
-          </div>
-      </div>
+      <app-error [error]="error"></app-error>
   </form>
 </div>

@@ -17,8 +17,8 @@
                     <a class="dropdown-toggle" href="" data-toggle="dropdown">Listes<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a [routerLink]="['/getEmployees']">Tous les employés</a></li>
-                        <li><a href="">Liste par Job</a></li>
-                        <li><a href="">Liste par Département</a></li>
+                        <li><a [routerLink]="['/getEmployees/byJob']">Liste par Job</a></li>
+                        <li><a [routerLink]="['/getEmployees/byDep']">Liste par Département</a></li>
                     </ul>
                 </li>
                 <li *ngIf="sharedService.isConnected" ><a routerLink="/addEmployee">Ajouter</a></li>
